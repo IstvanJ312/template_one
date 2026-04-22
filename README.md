@@ -1,8 +1,8 @@
-### BASIC INFO
+# BASIC INFO
 
 This react native app template comes with some functions, packages and services set up to ease the starting up of a new app. It also includes some sample files and workflows set up. It uses clerk for authentication, tailwindcss for styling, Zustand for global state management, Sentry for user feedback and analytics, Neon for database & Drizzle for the ORM
 
-## TODO:
+### TODO:
 
 1. Change the app slug & name in app.json to match the ones for the specific app you're building.
 
@@ -10,7 +10,7 @@ This react native app template comes with some functions, packages and services 
 
 This app already has some sso workflows for google auth, apple auth and github auth set up in the hooks/useSocialAuth file. It also has a sign-in page as well as some basic logic to handle user redirection based on the sign-in status. In addition, it has also a basic sign-in page set up.
 
-# TODO:
+### TODO:
 
 1. Make sure to set the EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in the .env file
 2. Customize the useSocialAuth file to cater for your desired sign-in options
@@ -21,7 +21,7 @@ This app already has some sso workflows for google auth, apple auth and github a
 This app has tailwindcss already installed and set up for development, together with color theming built in, and support for light/dark theming modes.
 In addition to this, I have written a simple hook called useThemeColors to enable you access the color values from anywhere within the app.
 
-# TODO:
+### TODO:
 
 1. Modify the global.css file to house the desired color theme of your choice. Use hsl color values to keep their opacity easily editable
 
@@ -29,7 +29,7 @@ In addition to this, I have written a simple hook called useThemeColors to enabl
 
 These have also been installed and set up.
 
-# TODO:
+### TODO:
 
 1. Update the database url in the .env file to the url of the database you are using to reflect the one on the neon webpage for your project
 2. Edit the database schema file to have the desired schema you would like to use for your database tables. an example is included
@@ -41,7 +41,7 @@ These have also been installed and set up.
 
 This app uses Zustand for global state management
 
-# TODO:
+### TODO:
 
 1. Create a store in the store folder to handle communication between the frontend and the backend through the api routes
 2. In this store, make the final versions of the db-actions, but these should just work with the api routes defined earlier
@@ -50,16 +50,16 @@ This app uses Zustand for global state management
 
 This is how you can set up sentry for user feedback, performance monitoring & error tracking
 
-# TODO:
+### TODO:
 
 1. Create a sentry project and paste it's unique initialization command into the terminal to set it up
    (included is a simple feedback button component in the components folder to serve as a start for the implementation of sentry. Once you install sentry, Uncomment its code & the error messages in it will disappear)
 
-### IMPORTANT TO NOTE:
+# IMPORTANT TO NOTE:
 
 1. The app will not run without a clerk publishable key, so don't panic. Just add it and rerun the file.
 
-### WHEN DEPLOYING
+## WHEN DEPLOYING
 
 2. When you are building the apk and sending it to eas, it's important to first of all run this command to send the expo publishable key to eas:
    eas env:create --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_your_actual_key_here --environment (production / preview)
