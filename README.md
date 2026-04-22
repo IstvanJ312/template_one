@@ -1,56 +1,68 @@
-# Welcome to your Expo app 👋
+### BASIC INFO
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This react native app template comes with some functions, packages and services set up to ease the starting up of a new app. It also includes some sample files and workflows set up. It uses clerk for authentication, tailwindcss for styling, Zustand for global state management, Sentry for user feedback and analytics, Neon for database & Drizzle for the ORM
 
-## Get started
+## TODO:
 
-1. Install dependencies
+1. Change the app slug & name in app.json to match the ones for the specific app you're building.
 
-   ```bash
-   npm install
-   ```
+## Clerk auth
 
-2. Start the app
+This app already has some sso workflows for google auth, apple auth and github auth set up in the hooks/useSocialAuth file. It also has a sign-in page as well as some basic logic to handle user redirection based on the sign-in status. In addition, it has also a basic sign-in page set up.
 
-   ```bash
-   npx expo start
-   ```
+# TODO:
 
-In the output, you'll find options to open the app in a
+1. Make sure to set the EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in the .env file
+2. Customize the useSocialAuth file to cater for your desired sign-in options
+3. Customize the sign-in page with desired styling
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tailwindcss
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+This app has tailwindcss already installed and set up for development, together with color theming built in, and support for light/dark theming modes.
+In addition to this, I have written a simple hook called useThemeColors to enable you access the color values from anywhere within the app.
 
-## Get a fresh project
+# TODO:
 
-When you're ready, run:
+1. Modify the global.css file to house the desired color theme of your choice. Use hsl color values to keep their opacity easily editable
 
-```bash
-npm run reset-project
-```
+## Neon database & Drizzle orm
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+These have also been installed and set up.
 
-### Other setup steps
+# TODO:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+1. Update the database url in the .env file to the url of the database you are using to reflect the one on the neon webpage for your project
+2. Edit the database schema file to have the desired schema you would like to use for your database tables. an example is included
+3. Next, create the basic database actions in the db-actions file to communicate data to & from the database. An example is included
+4. Create API endpoints in your app file with the naming format of name+api.ts to shield the database from hackers
+5. In these api routes, define methods e.g POST, GET, etc... which implement the db actions
 
-## Learn more
+## Zustand
 
-To learn more about developing your project with Expo, look at the following resources:
+This app uses Zustand for global state management
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# TODO:
 
-## Join the community
+1. Create a store in the store folder to handle communication between the frontend and the backend through the api routes
+2. In this store, make the final versions of the db-actions, but these should just work with the api routes defined earlier
 
-Join our community of developers creating universal apps.
+## Sentry
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This is how you can set up sentry for user feedback, performance monitoring & error tracking
+
+# TODO:
+
+1. Create a sentry project and paste it's unique initialization command into the terminal to set it up
+   (included is a simple feedback button component in the components folder to serve as a start for the implementation of sentry. Once you install sentry, Uncomment its code & the error messages in it will disappear)
+
+### IMPORTANT TO NOTE:
+
+1. The app will not run without a clerk publishable key, so don't panic. Just add it and rerun the file.
+
+### WHEN DEPLOYING
+
+2. When you are building the apk and sending it to eas, it's important to first of all run this command to send the expo publishable key to eas:
+   eas env:create --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_your_actual_key_here --environment (production / preview)
+3. Then check that the key has been sent there by running this command:
+   eas env:list
+4. Then run this this command to run the eas build: eas build -p android --profile preview
