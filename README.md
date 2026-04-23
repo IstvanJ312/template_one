@@ -59,10 +59,13 @@ This is how you can set up sentry for user feedback, performance monitoring & er
 
 1. The app will not run without a clerk publishable key, so don't panic. Just add it and rerun the file.
 
-## WHEN DEPLOYING
+### WHEN DEPLOYING
 
-2. When you are building the apk and sending it to eas, it's important to first of all run this command to send the expo publishable key to eas:
-   eas env:create --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_your_actual_key_here --environment (production / preview)
-3. Then check that the key has been sent there by running this command:
+1. When you are building the apk and sending it to eas, it's important to first of all run this command to send all of your .env variables to eas:
+   [eas env:create --name YOUR_ENV_VARIABLE_NAME --value your_actual_key_here --environment (production / preview)]
+2. Then check that the keys have been sent there by running this command:
    eas env:list
-4. Then run this this command to run the eas build: eas build -p android --profile preview
+3. Deploy your backend to eas hosting using this command: [npx expo export --platform web
+   eas deploy] & copy the url given. Set the EXPO_PUBLIC_API_URL variable in your .env file and make sure you edit the api routes usage in your stores to properly access both the local & web versions of the route. Then send it to eas using step 1 & 2.
+4. Make sure that your sentry app slug and organization slug match the ones on your sentry dashboard
+5. Then run this this command to run the eas build: [eas build -p android --profile preview]
