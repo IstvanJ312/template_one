@@ -66,6 +66,6 @@ This is how you can set up sentry for user feedback, performance monitoring & er
 2. Then check that the keys have been sent there by running this command:
    eas env:list
 3. Deploy your backend to eas hosting using this command: [npx expo export --platform web
-   eas deploy] & copy the url given. Set the EXPO_PUBLIC_API_URL variable in your .env file and make sure you edit the api routes usage in your stores to properly access both the local & web versions of the route. Then send it to eas using step 1 & 2.
+   eas deploy] & copy the url given. Set the EXPO_PUBLIC_API_URL variable in your .env file and make sure you edit the api routes usage in your stores to properly access both the local & web versions of the route. Then send it to eas using step 1 & 2. (if you run into JIMP issues, try removing any links to .ico files from app.json as well as deleting any actual .ico files from the assets.)
 4. Make sure that your sentry app slug and organization slug match the ones on your sentry dashboard
 5. Then run this this command to run the eas build: [eas build -p android --profile preview]
